@@ -177,6 +177,17 @@ const InvoiceForm = () => {
       alert("Invoice added successfuly 🥳");
     } else {
       dispatch(addInvoice(formData));
+      const invoiceId = formData.id;
+      const productsList = formData.items.map((item) => {
+        return {
+          invoiceId: invoiceId,
+          ...item,
+        };
+      });
+      dispatch(addProduct({ invoiceId: formData.id, items: formData.items }));
+      // console.log(productsList);
+      // productsList.map((product) => dispatch(addProduct()));
+      alert("Invoice added successfuly 🥳");
     }
     navigate("/");
   };
